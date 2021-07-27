@@ -1,0 +1,131 @@
+
+#!/bin/bash
+numofentry=0
+MaxNoofEntry=4
+SecretKeyEntry=4
+SecretKey="linux"
+if [[ $1 =~ ^[A-Za-z" "]+$ && $2 =~ ^[0-9]+$ ]]
+	then
+		while [ $MaxNoofEntry -gt $numofentry ]
+		do
+			numofentry=$(($numofentry + 1))
+			echo "Enter the secret key to enter, BE CAREFUL you have only $SecretKeyEntry attempts left: "
+			read secretKeyUserInput
+			SecretKeyEntry=$(($SecretKeyEntry - 1))
+			if [ $secretKeyUserInput == $SecretKey ]
+				then
+					echo "****************************************************************"
+					echo "****************************************************************"
+					echo "**********            WELCOME $1 $2               ********************"
+					echo "*********          CURRENT DATE IS $(date)          ***************"
+					echo "****************************************************************"
+					echo "****************************************************************"
+					repeat() 
+						{ echo "Guess the best football team out of these and enter the country code!"
+							
+							echo "----------------------------------------------------------------"
+							echo " ***** COUNTRY     **    CODE ******"
+							echo "----------------------------------------------------------------"
+							echo " ***** Brazil      **    BRZ ******"
+							echo " ***** Argentina   **    ARG ******"
+							echo " ***** Nepal       **    NEP ******"
+							echo " ***** China       **    CHI ******"
+							echo " ***** England     **    ENG ******"
+							echo "****************************************************************"
+							echo "****************************************************************"
+							echo "Enter the country code"
+							read userSelectedTeam
+							echo "------------------------------------------"
+							bestFootTeam="NEP"
+							until [ $userSelectedTeam == $bestFootTeam ]
+								do
+									echo "SORRY! Wrong country Selected!!!"
+									echo "TRY AGAIN!!!!"
+									echo "Please choose another one: "
+									read userSelectedTeam
+								done
+							echo "OH YEAH! NICE ONE"
+							echo "The Nepal national football team represents Nepal in International
+							men's football, and is governed by the All Nepal Football Association.
+							A member of the Asian Football Confederation, the Nepalese football team
+							plays their home games at Dasarath Rangasala Stadium in Kathmandu."
+							echo "****************************************************************"
+							echo "Select any three players out of the following: "
+							echo "****************************************************************"
+							echo "-----------------------------------------------------------------"
+							echo " ** Player Code     **     Player        **"
+							echo "-----------------------------------------------------------------"
+							echo "**	LM            **   Lionel Messi     **"
+							echo "**	NJ            **   Neymar Junior    **"
+							echo "**	KC            **   Kiran Chemjong   **"
+							echo "**	ZZ            **   Zheng Zhi        **"
+							echo "**	HK            **   Harry Kane       **"
+							echo "------------------------------------------------------------------"
+							echo "****************************************************************"
+							echo "Enter three of your favourite players's Player code and seperate them by space: "
+							players=("LM NJ KC ZZ HK")
+							until [[ ${#k} = 2 && "${players[@]}" =~ "${j}" && "${players[@]}" =~ "${k}" && "${players[@]}" =~ "${i}" && $i != $j && $i != $k && $j != $i && $j != $k && 							$k != $i && $k != $j ]]
+								do
+									echo -e "Select three Player's codes (Case sensitive) : \c"
+									read i j k
+								done
+							echo "********************************"
+							echo "************************************"
+							echo "Three players are selected"
+							echo "****************************************"
+							echo "********************************************"
+							echo "Choose your favourite player among them "
+							echo "*******************************************"
+							echo "********************************************"
+							select player in $i  $j $k
+								do
+									if [ -z "$player" ]
+										then
+											echo "Please enter 1 or 2 or 3"
+									else
+										echo "You choose $player as your favourite player."
+										break
+									fi
+								done
+							i=""
+							j=""
+							k=""
+							if [ $player == LM ]
+								then
+									cat LM
+							elif [ $player == KC ]
+								then
+									cat KC
+							elif [ $player == NJ ]
+								then
+									cat NJ
+							else
+								echo " The program does not have any information of player you choose."
+								repeat
+							fi
+							function access() 
+							{ echo "Do you want to start again????"
+								read userInpRepeatProgram
+								case "$userInpRepeatProgram" in
+									yes|y)
+									repeat
+								;;
+									no|n)
+									exit
+								;;
+									*)
+									echo "Enter Either yes or no!!!"
+									access
+								;;
+								esac 
+							}
+						}
+					repeat 
+					access
+					exit				
+			fi
+		done
+else
+	echo "Enter name and id in a proper way to proceed further."
+fi
+
